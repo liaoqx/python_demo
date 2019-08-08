@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>故障信息管理</title>
+    <script>
+        function selectAll(){  //全选或取消全选
+            var ctrl_box = document.getElementById("ctrl_box")
+            var other_boxes = document.getElementsByName("selected")
+            if(ctrl_box.checked)
+                for(var i = 0;i < other_boxes.length;i++)
+                    other_boxes[i].checked = true
+            else
+                for(var i = 0;i < other_boxes.length;i++)
+                    other_boxes[i].checked = false
+        }
+        function confirmData(){
+                var ids = ""
+                var ids_arr = new Array()
+                var checked_boxes = document.getElementsByName("selected")
+                for(var i = 0;i < checked_boxes.length;i++)
+                    if(checked_boxes[i].checked == true)
+                        ids_arr.push(checked_boxes[i].value)
+                ids = ids_arr.join(",")
+                if(ids != ""){
+                    if(window.confirm("确定要删除选中的信息吗?"))
+                        window.location.href = "deleteErrorById?err_code="+ids
+                }else
+                    alert("请选择要删除的记录")
+        }
+        function search(){
+            var keywords = document.getElementById("keywords").value
+            if(keywords.length >= 1)
+                window.location.href = "getErrorsByIdOrName?keywords="+keywords
+            else
+                alert("请输入要查找的内容")
+        }
+    </script>
+</head>
+<body>
+<!--    {% if request.session.status is not null %}&lt;!&ndash; 检查操作(如添加/修改/删除操作后的)状态 &ndash;&gt;
+    <p style="color:red">{{request.session.warning}}</p>
+    <script>
+        alert({{request.session.warning}})
+    </script>
+    {% endif %}-->
+    <div style="color:red border:2px">
+        <input type="text" placeholder="请输入故障代码或故障信息" name="keywords" id="keywords">&nbsp;
+        <button onclick="search()">搜索</button>&nbsp;
+        <button><a href="toAddError" style="text-decoration:none">添加</a></button>&nbsp;
+        <button onclick="confirmData()">删除</button>
+        {% if err_info is not null %}
+            <p style="color:red">{{err_info}}</p>
+        {% endif %}
+    </div>
+    <div style="color:red border:2px">
+        <center>
+        <table border="1" cellspacing="0">
+            <tr>
+                <th><input type="checkbox" onclick="selectAll()" id="ctrl_box">全选</th>
+                <th>故障代码</th>
+                <th>故障信息</th>
+                <th>备注</th>
+                <th>操作</th>
+            </tr>
+            {% if error_list is not null %}
+                {% for error in error_list %}
+                    <tr>
+                        <td><input type="checkbox" value="{{error.err_code}}" name="selected"></td>
+                        <td>{{error.err_code}}</td>
+                        <td>{{error.err_desc}}</td>
+                        <td>{{error.remark}}</td>
+                        <td><a href="toUpdateErrorById?err_code={{error.err_code}}">修改</a>&nbsp;
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </table>
+    </center>
+    </div>
+</body>
+</html>

@@ -16,14 +16,12 @@
     <h1>CA_Demo管理系统</h1>
     <div>
         <form action="login" method="post">
-        <label>用户名</label><input type="input" name="username" required>
-       {% if err_info.username is not null %}
-            <p style="color:red">{{ err_info.username }}</p>
-            {% endif %}
+           <!-- {% csrf_token %}-->
+        <label>用户名</label><input type="input" name="userid" required placeholder="员工编号" value="{{userid}}">
         <br>
-        <label>密&nbsp;&nbsp;码</label><input type="password" name="password" required><br>
-          {% if err_info.password is not null %}
-            <p style="color:red">{{ err_info.password }}</p>
+        <label>密&nbsp;&nbsp;码</label><input type="password" name="password" required value="{{password}}"><br>
+          {% if err_info is not null %}
+            <p style="color:red">{{ err_info }}</p>
             {% endif %}
         <input type="submit" value="登录">&nbsp;&nbsp;<input type="reset" value="重置">
     </form>

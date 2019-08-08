@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加故障信息</title>
+</head>
+<body>
+    <div>
+        <form action="addError" method="post">
+            <label>故障代码</label><input type="text" name="err_code" value="{{err_code}}"><br><br>
+            <label>故障描述</label><input type="text" name="err_desc" value="{{err_desc}}"><br><br>
+            <label>维修建议</label><input type="textarea" name="remark" value="{{remark}}"><br><br>
+            <input type="submit" value="提交">&nbsp;&nbsp;<input type="reset" value="重置">
+        </form>
+        {% if status is not null and status == -1 %}
+            <p style="color:red">{{warning}}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

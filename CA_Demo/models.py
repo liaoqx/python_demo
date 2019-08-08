@@ -1,7 +1,7 @@
 # _*_ coding:utf-8 _*_
 from django.db import models
 
-# 故障信息列
+# 故障信息
 class ErrorsInfo(models.Model):
     err_code = models.CharField(max_length=32,unique=True,null=False) #错误代码
     err_desc = models.CharField(max_length=256)                       #错误描述
@@ -16,7 +16,7 @@ class ErrorsInfo(models.Model):
 class CustomersInfo(models.Model):
     id = models.CharField(max_length=18,primary_key=True)   #身份证号
     cus_name = models.CharField(max_length=32,null=False)   #姓名
-    password = models.CharField(max_length=16,null=False)   #密码 6-16位
+    password = models.CharField(max_length=32,null=False)   #密码 6-16位
     telephone = models.CharField(max_length=16)             #联系方式
     email = models.CharField(max_length=32)                 #邮件(联系方式,必须填写一个)
     sex = models.CharField(max_length=1)                    #性别 F:女 M:男
@@ -32,7 +32,7 @@ class EmployeesInfo(models.Model):
     id = models.CharField(max_length=18,primary_key=True)           #身份证号
     emp_id = models.CharField(max_length=18,unique=True,null=False) #员工编号
     emp_name = models.CharField(max_length=64,null=False)           #员工姓名
-    password = models.CharField(max_length=16)                      #密码,若为管理员则不能为空
+    password = models.CharField(max_length=32)                      #密码,若为管理员则不能为空
     is_admin = models.CharField(max_length=1,default='F')           #是否为管理员用户,T:是 F:否
     telephone = models.CharField(max_length=16)                     #联系方式
     email = models.CharField(max_length=32)                         #邮件(联系方式,必须填写一个)
