@@ -13,9 +13,9 @@ def login(request):
     password = request.POST.get('password')
     err_info = ""
     if userid is None or password is None or userid.strip() == "" or password.strip() == "":
-        err_info = "用户名或密码不能为空"
+        err_info = u"用户名或密码不能为空"
     elif len(userid.strip()) < 2 or len(password.strip()) < 6 or len(password.strip()) > 16:
-        err_info = "用户名或密码(6-16位)格式错误"
+        err_info = u"用户名或密码(6-16位)格式错误"
     else:
         try:
             emp = EmployeesInfo.objects.get(emp_id=userid)
@@ -24,11 +24,11 @@ def login(request):
         if emp:
             md5 = hashlib.md5()
             md5.update(password.encode('utf-8'))
-            if md5.hexdigest() == emp.password:
+            if md5.hexdigest() == emp.password and emp.is_admin == 'T' and emp.is_removed == 'F':
                 request.session['userid'] = emp.emp_id  #保存session
                 request.session['username'] = emp.emp_name
                 return HttpResponseRedirect('show_main')
-        err_info = '用户名或密码错误'
+        err_info = u'用户名或密码错误'
     return render(request,'index.html',{'err_info':err_info,
                                         'userid':userid,
                                         'password':password})

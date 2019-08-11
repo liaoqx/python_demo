@@ -3,25 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>故障信息管理</title>
+<!--<script src="/static/js/common.js"></script>-->
+
+    {% load staticfiles %}
+    <script src="{% static 'js/common.js'%}"></script>
     <script>
-        function selectAll(){  //全选或取消全选
-            var ctrl_box = document.getElementById("ctrl_box")
-            var other_boxes = document.getElementsByName("selected")
-            if(ctrl_box.checked)
-                for(var i = 0;i < other_boxes.length;i++)
-                    other_boxes[i].checked = true
-            else
-                for(var i = 0;i < other_boxes.length;i++)
-                    other_boxes[i].checked = false
-        }
-        function confirmData(){
-                var ids = ""
-                var ids_arr = new Array()
-                var checked_boxes = document.getElementsByName("selected")
-                for(var i = 0;i < checked_boxes.length;i++)
-                    if(checked_boxes[i].checked == true)
-                        ids_arr.push(checked_boxes[i].value)
-                ids = ids_arr.join(",")
+        function delData(){
+                var ids_arr = checkSelection()
+                var ids = ids_arr.join(",")
                 if(ids != ""){
                     if(window.confirm("确定要删除选中的信息吗?"))
                         window.location.href = "deleteErrorById?err_code="+ids
@@ -44,16 +33,16 @@
         alert({{request.session.warning}})
     </script>
     {% endif %}-->
-    <div style="color:red border:2px">
+    <div>
         <input type="text" placeholder="请输入故障代码或故障信息" name="keywords" id="keywords">&nbsp;
         <button onclick="search()">搜索</button>&nbsp;
         <button><a href="toAddError" style="text-decoration:none">添加</a></button>&nbsp;
-        <button onclick="confirmData()">删除</button>
+        <button onclick="delData()">删除</button>
         {% if err_info is not null %}
             <p style="color:red">{{err_info}}</p>
         {% endif %}
     </div>
-    <div style="color:red border:2px">
+    <div>
         <center>
         <table border="1" cellspacing="0">
             <tr>

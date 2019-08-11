@@ -25,7 +25,7 @@ def addError(request):
     warning = ""
     if err_code.strip() == "" or \
             err_desc.strip() == "" or remark.strip() == "":
-        warning = "请完善信息后再提交!"
+        warning = u"请完善信息后再提交!"
         return render(request, 'errors/addError.html', {'status': -1,
                                                         'err_code': err_code,
                                                         'err_desc': err_desc,
@@ -36,14 +36,14 @@ def addError(request):
         err.save()
     except BaseException:
         traceback.print_exc()
-        warning = "操作失败"
+        warning = u"操作失败"
         return render(request, 'errors/addError.html', {'status': -1,
                                                         'err_code': err_code,
                                                         'err_desc': err_desc,
                                                         'remark': remark,
                                                         'warning': warning})
     else:
-        warning = "操作成功"
+        warning = u"操作成功"
         # request.session['status'] = 0
         # request.session['warning'] = warning
         return HttpResponseRedirect('manageErrors')

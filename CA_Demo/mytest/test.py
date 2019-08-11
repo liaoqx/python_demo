@@ -47,5 +47,5 @@ def getEmployee():
 
 
 if __name__ == '__main__':
-    #addEmployee()
+    addEmployee()
     getEmployee()
