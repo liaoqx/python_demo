@@ -40,13 +40,16 @@ def addCusCars(request):
     '''先获取所有车辆类型'''
     cus_id = request.POST.get("id")
     cars_list = request.POST.get("cars") #获取添加的所有车辆
+    cars = []
 
     for carinfo in cars_list:
         car = UserCarsInfo()
         car.customer_id = carinfo.customer_id
         car.plate_number = carinfo.plate_number
         car.color = carinfo.color
-        car.save()
+        cars.append(car)
+    UserCarsInfo.objects.bulk_create(cars)
+
     return HttpResponse(json.dumps({"statusCode":0}),content_type='application/json;charset=utf-8')
 
 def updateCusCarById(request):
