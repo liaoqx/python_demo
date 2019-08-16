@@ -112,7 +112,7 @@ class RepairInfo(models.Model):
     repair_desc = models.CharField(max_length=128,verbose_name="故障描述")                          #故障描述
     repair_time = models.DateTimeField(auto_now=True,null=False,verbose_name="维修时间")            #维修时间
     def __str__(self):
-        return self.customer.cus_name + " " + self.car.car_id + " " + self.repair_time
+        return self.customer.cus_name + " " + self.plate_number + " " + self.repair_time.strftime("%Y-%m-%d")
     class Meta:
         db_table = 'repair_info'
         verbose_name = "维修记录"

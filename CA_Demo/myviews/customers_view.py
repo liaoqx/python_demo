@@ -1,9 +1,14 @@
+#!/usr/bin/env python
 # _*_ coding=utf-8 _*_
 import logging;logging.basicConfig(level=logging.INFO)
 import traceback
 from ..models import CustomersInfo,UserCarsInfo
 from django.db.models import Q
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from .tools import paging
+
+kw = None
 
 def zipCustomersData(customer_list):
     '''根据客户信息查询客户的车辆信息,并组装成一个列表返回'''
@@ -20,20 +25,41 @@ def zipCustomersData(customer_list):
 
 def getAllCustomers(request):
     '''获取所有客户信息(id,cus_name,telephone,email,sex,birthday)'''
-    customer_list = CustomersInfo.objects.all().values('id','cus_name','telephone','email','sex','birthday')
+    customer_list = CustomersInfo.objects.all().order_by("id").values('id','cus_name','telephone','email','sex','birthday')
     users = zipCustomersData(customer_list)
-    return render(request,'customers/manage_customers.html',{
-        "users":users
-    })
+
+    cur_page = request.GET.get("page")
+    cur_user_list,page_num,cur_page,previous_page,next_page = paging(users,cur_page)
+
+    return render(request,'customers/manage_customers.html',{ "users":cur_user_list,
+                                                              "page_num":range(1,page_num + 1),
+                                                              "cur_page":cur_page,
+                                                              "previous_page":previous_page,
+                                                              "next_page":next_page,
+                                                              "url":"manageCustomers"})
 
 def getCustomersByIdOrName(request):
     '''通过客户id或姓名的方式查询客户信息'''
     keywords = request.GET.get("keywords")
-    customer_list = CustomersInfo.objects.filter(Q(id__icontains=keywords) | Q(cus_name__icontains=keywords)).values('id','cus_name','telephone','email','sex','birthday')
+    cur_page = request.GET.get("page")
+    global kw
+    if keywords is None and kw is None:
+        return HttpResponseRedirect("manageCustomers")
+    elif keywords is not None:
+        kw = keywords
+
+    customer_list = CustomersInfo.objects.filter(Q(id__icontains=kw) |
+                                                 Q(cus_name__icontains=kw)).order_by("id").values('id','cus_name','telephone','email','sex','birthday')
     users = zipCustomersData(customer_list)
-    return render(request, 'customers/manage_customers.html', {
-        "users": users
-    })
+
+    cur_user_list, page_num, cur_page, previous_page, next_page = paging(users, cur_page)
+
+    return render(request, 'customers/manage_customers.html', {"users": cur_user_list,
+                                                               "page_num": range(1,page_num + 1),
+                                                               "cur_page": cur_page,
+                                                               "previous_page": previous_page,
+                                                               "next_page": next_page,
+                                                               "url": "getCustomersByIdOrName"})
 
 def customerFunc(request,cus_func):
     '''根据传入参数调用不同的处理方法'''

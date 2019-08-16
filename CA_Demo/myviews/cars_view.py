@@ -1,11 +1,14 @@
+#!/usr/bin/env python
 # _*_ coding:utf-8 _*_
 from ..models import CarsInfo,CarComponentsInfo,UserCarsInfo
 from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
 from django.db.models import Q
 import logging;logging.basicConfig(level=logging.INFO)
+from .tools import paging
 
 color_list = [6,u'黑色',u'白色',u'灰色',u'蓝色',u'红色',u'紫色']  #车型色系
+kw = None
 
 def zipCarsData(car_list):
     cars = []
@@ -28,18 +31,40 @@ def zipCarsData(car_list):
 
 def getAllCars(request):
     '''获取所有车辆信息'''
-    car_list = CarsInfo.objects.all()
+    cur_page = request.GET.get("page")
+    car_list = CarsInfo.objects.all().order_by("car_id")
     cars = zipCarsData(car_list)
     #logging.info("cars:{0}".format(cars))
-    return render(request,'cars/manage_cars.html',{"car_list":cars})
+    cur_car_list,page_num,cur_page,previous_page,next_page = paging(cars,cur_page)
+    return render(request,'cars/manage_cars.html',{"car_list":cur_car_list,
+                                                   "page_num":range(1,page_num + 1),
+                                                   "cur_page":cur_page,
+                                                   "previous_page":previous_page,
+                                                   "next_page":next_page,
+                                                   "url":"manageCars"})
 
 def getCarsByIdOrName(request):
     '''通过车辆型号/名称查询车辆信息'''
     keywords = request.GET.get("keywords")
-    car_list = CarsInfo.objects.filter(Q(car_id__icontains=keywords) | Q(car_name__icontains=keywords))
+    cur_page = request.GET.get("page")
+
+    global kw
+    if keywords is None and kw is None:
+        return HttpResponseRedirect("manageCars")
+
+    elif keywords is not None:
+        kw = keywords
+
+    car_list = CarsInfo.objects.filter(Q(car_id__icontains=kw) | Q(car_name__icontains=kw)).order_by("car_id")
     cars = zipCarsData(car_list)
     #logging.info("cars:{0}".format(cars))
-    return render(request,'cars/manage_cars.html',{"car_list": cars})
+    cur_car_list,page_num,cur_page,previous_page,next_page = paging(cars,cur_page)
+    return render(request,'cars/manage_cars.html',{"car_list":cur_car_list,
+                                                   "page_num":range(1,page_num + 1),
+                                                   "cur_page":cur_page,
+                                                   "previous_page":previous_page,
+                                                   "next_page":next_page,
+                                                   "url":"getAllCars"})
 
 def getEngines():
     '''获取发动机信息'''
@@ -60,7 +85,7 @@ def getRequestCarData(request):
     car.number = request.POST.get("number")
     car.color_list = request.POST.get("colors")
 
-    logging.info("color_list:{0}".format(car.color_list))
+    #logging.info("color_list:{0}".format(car.color_list))
 
     car.is_removed = request.POST.get("is_removed")
     car.remark = request.POST.get("remark")
@@ -84,7 +109,7 @@ def updateCarById(request):
 
 
 def deleteCarById(request):
-    '''根据车辆型号修改车辆信息'''
+    '''根据车辆型号删除车辆信息'''
     ids = request.GET.get("ids")
     ids_list = []
     for id in ids.split(","):

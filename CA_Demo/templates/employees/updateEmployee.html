@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改员工信息</title>
+</head>
+<body>
+    <div>
+        <form action="updateEmployeeById" method="post">
+            <label>身份证号</label><input type="text" name="id" value="{{employee.id}}"><br><br>
+            <label>员工编号</label><input type="text" name="emp_id" value="{{employee.emp_id}}"><br><br>
+            <label>员工姓名</label><input type="text" name="emp_name" value="{{employee.emp_name}}"><br><br>
+            <label>联系电话</label><input type="text" name="telephone" value="{{employee.telephone}}"><br><br>
+            <label>邮箱</label><input type="text" name="email" value="{{employee.email}}"><br><br>
+            <label>性别</label>
+                {% ifequal employee.sex 'M' %}
+                      <input type="radio" checked="checked" value="M" name="sex">男
+                {% else %}
+                        <input type="radio" value="M" name="sex">男
+                {% endifequal %}
+                {% ifequal employee.sex 'F' %}
+                      <input type="radio" checked="checked" value="F" name="sex">女
+                {% else %}
+                        <input type="radio" value="F" name="sex">女
+                {% endifequal %}<br><br>
+            <label>入职时间</label><input type="text" name="join_time" value="{{employee.join_time}}"><br><br>
+            <label>所在部门</label>
+                {% if depts is not null %}
+                    <select name="emp_dept">
+                        {% for dept in depts %}
+                            <option value="{{dept.dept_id}}">{{dept.dept_name}}</option>
+                        {% endfor %}
+                    </select>
+                {% endif %}<br><br>
+            <label>就职状态</label>
+                {% ifequal employee.is_removed 'F' %}
+                      <input type="radio" checked="checked" value="F" name="is_removed">在职
+                {% else %}
+                        <input type="radio" value="F" name="is_removed">在职
+                {% endifequal %}
+                {% ifequal employee.is_removed 'T' %}
+                      <input type="radio" checked="checked" value="T" name="is_removed">离职
+                {% else %}
+                        <input type="radio" value="T" name="is_removed">离职
+                {% endifequal %}<br><br>
+            <input type="hidden" value="{{employee.id}}" name="old_id">
+        <input type="submit" value="提交">&nbsp;&nbsp;<input type="reset" value="重置">
+        </form>
+    </div>
+</body>
+</html>
