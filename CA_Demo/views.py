@@ -11,7 +11,7 @@ def login(request):
 
     userid = request.POST.get('userid')
     password = request.POST.get('password')
-    err_info = ""
+
     if userid is None or password is None or userid.strip() == "" or password.strip() == "":
         err_info = u"用户名或密码不能为空"
     elif len(userid.strip()) < 2 or len(password.strip()) < 6 or len(password.strip()) > 16:
@@ -45,6 +45,10 @@ def return_html(request,html_name):
             return HttpResponseRedirect('show_index')
         return render(request,'main.html',{'userid':request.session.get('userid'),
                                            'username':request.session.get('username')})
+    elif html_name == "index":  #当已登录用户访问首页时 -> 直接进入系统
+        if request.session.get('userid') is not None:
+            return render(request, 'main.html', {'userid': request.session.get('userid'),
+                                                 'username': request.session.get('username')})
     return render(request,"{html_name}.html".format(html_name = html_name))
 
 # def content_manage(request,func,method):

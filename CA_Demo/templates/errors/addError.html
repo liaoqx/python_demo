@@ -3,13 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>添加故障信息</title>
+    <style type="text/css" rel="stylesheet">
+        div{
+            margin:10%
+        }
+    </style>
 </head>
-<body>
+<body bgcolor="#87CEFA">
     <div>
-        <form action="addError" method="post">
-            <label>故障代码</label><input type="text" name="err_code" value="{{err_code}}"><br><br>
-            <label>故障描述</label><input type="text" name="err_desc" value="{{err_desc}}"><br><br>
-            <label>维修建议</label><input type="textarea" name="remark" value="{{remark}}"><br><br>
+        <form action="addError" method="post" onsubmit="checkContent()">
+            <label>故障代码</label>&nbsp;&nbsp;&nbsp;<input type="text" name="err_code" value="{{err_code}}" required><br><br>
+            <label>故障描述</label>&nbsp;&nbsp;&nbsp;<input type="text" name="err_desc" value="{{err_desc}}" required><br><br>
+            <label>维修建议</label>&nbsp;&nbsp;&nbsp;<textarea name="remark" value="{{remark}}" cols="70" rows="5" required></textarea><br><br>
             <input type="submit" value="提交">&nbsp;&nbsp;<input type="reset" value="重置">
         </form>
         {% if status is not null and status == -1 %}

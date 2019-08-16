@@ -44,7 +44,8 @@ def addCusCars(request):
 
     for carinfo in cars_list:
         car = UserCarsInfo()
-        car.customer_id = carinfo.customer_id
+        car.car_id = carinfo.car_id
+        car.customer_id = cus_id
         car.plate_number = carinfo.plate_number
         car.color = carinfo.color
         cars.append(car)

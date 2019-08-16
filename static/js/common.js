@@ -31,10 +31,27 @@ function getColors(){
         }
     }
     if(color_list.length >= 1){
-        var colors = document.getElementById('colors').value = color_list.join("")
+        document.getElementById('colors').value = color_list.join("")
         return true
     }else{
         alert("请选择该车型的色系!")
         return false
     }
+}
+
+function checkPwd(){ //设置管理员用户时,需要检查管理员密码格式
+    var err_info = $("#err_info")
+    password = $("#password").val()
+    repPassword = $("#repPassword").val()
+    if(password == null || password == "" || repPassword == null || repPassword == ""){
+        err_info.text("请设置管理员密码")
+        return false
+    }else if(password != repPassword){
+        err_info.text("两次输入的密码不一致")
+        return false
+    }else if(password.length > 16 || password.length < 6){
+        err_info.text("密码长度必须为6-16位")
+        return false
+    }else
+        return true
 }
