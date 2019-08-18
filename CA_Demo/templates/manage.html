@@ -2,31 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>left page</title>
+    <title>manage page</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <style type="text/css">
-        body{
-            background-color:#87CEFA;
-            padding:10px;
-        }
-        div{
+        body,html{
             background-color:#1E90FF;
-            padding:5px;
-            margin-right:5px;
-            margin-top:20px;
-            width:100%;
-            text-align:center
         }
         a{
-            text-decoration:none
+            text-decoration:none;
+            font-size:1.2em;
+            color:black;
+        }
+        a:visited{color:black}
+        .sub_content{
+            margin-top:0.6%;
         }
     </style>
 </head>
 <body>
-    <div><a href="errors/manageErrors" target="content">故障信息管理</a></div><br><br>
-    <div><a href="cars/manageCars" target="content">车辆信息管理</a></div><br><br>
-   <div> <a href="customers/manageCustomers" target="content">客户信息管理</a></div><br><br>
-    <div><a href="#" target="content">维修记录管理</a></div><br><br>
-    <div><a href="#" target="content">部件信息管理</a></div><br><br>
-    <div><a href="employees/manageEmployees" target="content">员工信息管理</a></div>
+<div class="row" style="text-align:center;vertical-align:center">
+    <div class="sub_content">
+        <div class="col-md-2"><a href="errors/manageErrors" target="content">故障信息管理</a></div>
+        <div class="col-md-2"><a href="cars/manageCars" target="content">车辆信息管理</a></div>
+        <div class="col-md-2"><a href="customers/manageCustomers" target="content">客户信息管理</a></div>
+        <div class="col-md-2"><a href="#" target="content">维修记录管理</a></div>
+        <div class="col-md-2"><a href="#" target="content">部件信息管理</a></div>
+        <div class="col-md-2"><a href="employees/manageEmployees" target="content">员工信息管理</a></div>
+    </div>
+</div>
 </body>
 </html>

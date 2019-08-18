@@ -18,6 +18,7 @@ def zipCustomersData(customer_list):
         user = {}
         #car_list = customer.usercarsinfo_set.all()
         car_list = UserCarsInfo.objects.filter(customer_id = customer['id'])
+        customer['birthday'] = customer['birthday'].strftime("%Y-%m-%d")
         user['customer'] = customer
         user['car_list'] = car_list
         users.append(user)
