@@ -14,8 +14,11 @@
 	<script src="https://cdn.bootcss.com/smalot-bootstrap-datetimepicker/2.4.4/js/bootstrap-datetimepicker.min.js"></script>
 	<script src="https://cdn.bootcss.com/smalot-bootstrap-datetimepicker/2.4.4/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 
-    <script src="{% static 'js/common.js'%}"></script>
     <script src="{% static 'js/my_datetimepicker.js' %}"></script>
+    <script src="{% static 'js/common.js' %}"></script>
+    <style type="text/css" rel="stylesheet">
+        @import url("/static/css/add_update_common.css")
+    </style>
 
     <script type="text/javascript">
         function isAdmin(){  //若录入员工为管理员,则显示密码设置框;否则隐藏密码设置框
@@ -27,64 +30,89 @@
         }
         function checkInfo(){
             var is_admin = $("input[name='is_admin']:checked").val()
+            var id = $("#id").val()
+            var reg_id = /^[0-9]{17}(X|x|[0-9]){1}$/
+
+            if(id.length < 1 || id.length > 18 || reg_id.test(id) == false){
+                $("#err_info").text("身份号格式错误")
+                return false
+            }
+
             if (is_admin == 'T'){
                 var result = checkPwd()
                 if (result == false)
                     return false
-                else
-                    return true
+                else{
+                    var res = checkEmailOrTel()
+                    return res
+                }
+            }else{
+                var res = checkEmailOrTel()
+                return res
             }
-            return true
         }
     </script>
 </head>
 <body>
-    <div>
+    <div id="container_div">
         <form action="addEmployee" method="post" onsubmit="return checkInfo()">
-            <label>身份证号</label><input type="text" name="id"><br><br>
-            <label>员工编号</label><input type="text" name="emp_id"><br><br>
-            <label>员工姓名</label><input type="text" name="emp_name"><br><br>
-            <label>是否为管理员</label>
-                      <input type="radio" value="T" name="is_admin" onchange="isAdmin()">是
-                      <input type="radio" value="F" name="is_admin" checked="checked" onchange="isAdmin()">否<br><br>
-                <div id="pwd_div" style="display:none;">
-                    密码&nbsp;&nbsp;<input type="password" name="password" id="password"><br><br>
-                    确认密码&nbsp;<input type="password" name="repPassword" id="repPassword"><br>
-                    <span id="err_info" style="color:red"></span>
-                </div><br>
-            <label>联系电话</label><input type="text" name="telephone"><br><br>
-            <label>邮箱</label><input type="text" name="email"><br><br>
-            <label>性别</label>
-                      <input type="radio" checked="checked" value="M" name="sex">男
-                      <input type="radio" value="F" name="sex">女<br><br>
-            <div class="row">
-                <div class="col-md-1"><label>入职时间</label></div>
+            <label class="col-md-2">身份证号</label><input type="text" name="id" class="col-md-2" required id="id"><br><br>
+            <!--<label class="col-md-2">员工编号</label><input type="text" name="emp_id" class="col-md-2"><br><br>-->
+            <label class="col-md-2">员工姓名</label><input type="text" name="emp_name" class="col-md-2" required><br><br>
+            <label class="col-md-2">是否为管理员</label>
             <div class="col-md-3">
+                <input type="radio" value="T" name="is_admin" onchange="isAdmin()">是 &nbsp;&nbsp;&nbsp;
+                <input type="radio" value="F" name="is_admin" checked="checked" onchange="isAdmin()">否
+            </div>
+            <br><br>
+                <div id="pwd_div" style="display:none;">
+                    <label class="col-md-2">密码&nbsp;</label>&nbsp;
+                    <input type="password" name="password" id="password" class="col-md-2"><br><br>
+                    <label class="col-md-2">确认密码</label>
+                    &nbsp;<input type="password" name="repPassword" id="repPassword" class="col-md-2"><br>
+                </div><br>
+            <label class="col-md-2">联系电话</label><input type="text" name="telephone" class="col-md-2" id="tel"><br><br>
+            <label class="col-md-2">邮箱</label><input type="text" name="email" class="col-md-2" id="email"><br>
+            <br>
+            <label class="col-md-2">性别</label>
+            <div class="col-md-3">
+                <input type="radio" checked="checked" value="M" name="sex">男 &nbsp;&nbsp;&nbsp;
+                <input type="radio" value="F" name="sex">女
+            </div>
+            <br><br>
+            <div class="row">
+                <div class="col-md-2"><label>入职时间</label></div>
+            <div class="col-md-2">
 		    	<div id="date2ID" class="input-group">
 		      		<div class="input-group-addon">
 						<i class="fa fa-clock-o" aria-hidden="true"></i>
 					</div>
-		      		<input id="dateID" class="form-control" value="请选择日期" readonly name="join_time">
-		      		<div class="input-group-addon">
-		      			<i class="fa fa-calendar" aria-hidden="true"></i>
-		      		</div>
+		      		<input id="dateID" class="form-control" value="请选择日期" readonly name="join_time" required>
 		    	</div>
 			</div>
             </div>
             <br><br>
-            <label>所在部门</label>
+            <label class="col-md-2">所在部门</label>
             {% if depts is not null %}
-                    <select name="emp_dept">
+                    <select name="emp_dept" class="col-md-2">
                         {% for dept in depts %}
                             <option value="{{dept.dept_id}}">{{dept.dept_name}}</option>
                         {% endfor %}
                     </select>
                 {% endif %}
             <br><br>
-            <label>就职状态</label>
-                        <input type="radio" checked="checked" value="F" name="is_removed">在职
-                      <input type="radio" value="T" name="is_removed">离职<br><br>
-        <input type="submit" value="提交">&nbsp;&nbsp;<input type="reset" value="重置"><br><br>
+            <label class="col-md-2">就职状态</label>
+             <div class="col-md-3">
+                   <input type="radio" checked="checked" value="F" name="is_removed">在职 &nbsp;&nbsp;&nbsp;
+                  <input type="radio" value="T" name="is_removed">离职
+             </div>
+            <br>
+                <span class="col-md-4" id="err_info" style="color:red"></span>
+            <br>
+
+            <div>
+                <input type="submit" value="提交">&nbsp;&nbsp;<input type="reset" value="重置">
+            </div>
         </form>
     </div>
 </body>

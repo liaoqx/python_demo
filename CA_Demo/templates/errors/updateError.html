@@ -3,13 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>修改故障信息</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <style type="text/css" rel="stylesheet">
+        @import url("/static/css/add_update_common.css")
+    </style>
 </head>
-<body bgcolor="#87CEFA">
-    <div>
+<body>
+    <div id="container_div">
         <form action="updateErrorById" method="post">
-            <label>故障代码</label><input type="text" name="err_code" value="{{error.err_code}}" required><br><br>
-            <label>故障描述</label><input type="text" name="err_desc" value="{{error.err_desc}}" required><br><br>
-            <label>维修建议</label><textarea name="remark" value="{{error.remark}}" cols="70" rows="5" required></textarea><br><br>
+            <label class="col-md-2">故障代码</label>
+            <input type="text" name="err_code" value="{{error.err_code}}" required class="col-md-2"><br><br>
+            <label class="col-md-2">故障描述</label>
+            <input type="text" name="err_desc" value="{{error.err_desc}}" required class="col-md-2"><br><br>
+
+            <label class="col-md-2">维修建议</label>
+            <textarea name="remark" value="{{error.remark}}" cols="70" rows="5" required></textarea><br><br>
             <input type="hidden" value="{{error.err_code}}" name="oldId">
             <input type="submit" value="提交">&nbsp;&nbsp;<input type="reset" value="重置">
         </form>

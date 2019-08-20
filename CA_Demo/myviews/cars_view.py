@@ -68,7 +68,7 @@ def getCarsByIdOrName(request):
 
 def getEngines():
     '''获取发动机信息'''
-    engines = CarComponentsInfo.objects.filter(component_id__startswith='FDJ')
+    engines = CarComponentsInfo.objects.filter(component_id__startswith='FDJ',is_removed = 'F')
     #logging.info("engines:{0}".format(engines))
     return engines
 

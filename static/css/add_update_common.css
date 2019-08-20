@@ -1,0 +1,10 @@
+        body{
+            background-color:#87CEFA
+        }
+        #container_div{
+            border:1px solid;
+            border-color:grey;
+            margin:2%;
+            padding:2%;
+            background-color:white;
+        }

@@ -4,10 +4,11 @@ from ..models import EmployeesInfo,RepairInfo
 from django.shortcuts import render
 from django.http import HttpResponseRedirect,HttpResponse
 import logging;logging.basicConfig(level=logging.INFO)
-from django.db.models import Q
+from django.db.models import Q,Count
 import hashlib
 from .tools import paging
 import json
+from string import Template
 
 dept_name_dict = {"ED01":u"人力资源部","ED02":u"财务部","ED03":u"运维部","ED04":u"研发部","ED05":u"质量监察部","ED06":u"营销部"}
 kw = None
@@ -26,7 +27,7 @@ def getRequestEmpData(request):
     '''获取添加/修改员工页面的员工信息'''
     password = ""
     id = request.POST.get("id")
-    emp_id = request.POST.get("emp_id")
+    #emp_id = request.POST.get("emp_id")
     emp_name = request.POST.get("emp_name")
     telephone = request.POST.get("telephone")
     email = request.POST.get("email")
@@ -39,7 +40,7 @@ def getRequestEmpData(request):
     if is_admin is not None and is_admin == 'T':
         password = request.POST.get("password")
 
-    employee = EmployeesInfo(id = id,emp_id = emp_id,emp_name = emp_name,telephone = telephone,
+    employee = EmployeesInfo(id = id,emp_name = emp_name,telephone = telephone,
                              email = email,sex = sex,join_time = join_time,emp_dept = emp_dept,is_removed = is_removed,is_admin = is_admin,password = password)
     return employee
 
@@ -64,6 +65,24 @@ def getAllEmployees(request):
 def addEmployee(request):
     '''添加员工'''
     employee = getRequestEmpData(request)
+    # 获取同年录入员工个数
+    total = EmployeesInfo.objects.filter(join_time__contains=employee.join_time[0:5]).aggregate(num=Count('id'))
+    num = total['num'] + 1
+
+    if num < 10:
+        str_num = ''.join(['000', str(num)])
+    elif num >= 10 and num < 100:
+        str_num = ''.join(['00', str(num)])
+    elif num >= 100 and num < 1000:
+        str_num = ''.join(['0', str(num)])
+    else:
+        str_num = str(num)
+
+    emp_id_obj = Template('${s1}${s2}${s3}')  # 员工编号组成: 部门编号+入职年份+当年入职员工数量
+    emp_id = emp_id_obj.safe_substitute(s1=employee.emp_dept, s2=employee.join_time[0:4], s3=str_num)
+    #logging.info("emp_id:{0}".format(emp_id))
+
+    employee.emp_id = emp_id
     employee.save()
     return HttpResponseRedirect('manageEmployees')
 
@@ -97,7 +116,16 @@ def getEmployeesByIdOrName(request):
 def updateEmployeeById(request):
     '''通过员工编号修改员工信息'''
     old_id = request.POST.get("old_id")
+    old_emp_id = request.POST.get("old_emp_id")
+    logging.info("old_emp_id:{0}".format(old_emp_id))
+
     emp = getRequestEmpData(request)
+    emp_id_obj = Template('${s1}${s2}')
+    emp_id = emp_id_obj.safe_substitute(s1=emp.emp_dept,s2=old_emp_id[4:])
+
+    #logging.info("new_emp_id:{0}".format(emp_id))
+
+    emp.emp_id = emp_id
     EmployeesInfo.objects.filter(id=old_id).update(id=emp.id,emp_id = emp.emp_id,emp_name = emp.emp_name,telephone = emp.telephone,
                                                 email = emp.email,sex = emp.sex,join_time = emp.join_time,emp_dept = emp.emp_dept,is_removed = emp.is_removed)
 
