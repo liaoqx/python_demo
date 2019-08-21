@@ -8,7 +8,6 @@ import json
 
 def register(request):
     '''客户注册:id,password,cus_name,telephone,email,sex,birthday'''
-    msg = ""
     customer = CustomersInfo()
     id = request.POST.get("id")
     logging.info("id = {0}".format(id))
