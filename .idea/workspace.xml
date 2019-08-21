@@ -43,7 +43,11 @@
         <entry file="file://$PROJECT_DIR$/CA_Demo/myviews/clientviews/client_user_views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="380">
+<<<<<<< HEAD
               <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
+=======
+              <caret line="55" selection-start-line="55" selection-end-line="55" />
+>>>>>>> dev
               <folding>
                 <element signature="e#50#86#0" expanded="true" />
               </folding>
@@ -105,8 +109,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CA_Demo/templates/employees/manage_employees.html">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="-4796">
               <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+=======
+            <state relative-caret-position="344">
+              <caret line="274" column="18" selection-start-line="274" selection-start-column="18" selection-end-line="274" selection-end-column="18" />
+>>>>>>> dev
             </state>
           </provider>
         </entry>
@@ -197,7 +206,11 @@
       </list>
     </option>
   </component>
+<<<<<<< HEAD
   <component name="ProjectFrameBounds" extendedState="6">
+=======
+  <component name="ProjectFrameBounds" extendedState="7">
+>>>>>>> dev
     <option name="x" value="-7" />
     <option name="y" value="2" />
     <option name="width" value="1378" />
@@ -395,7 +408,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+=======
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+>>>>>>> dev
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16596417" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -408,7 +425,11 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.329718" />
       <window_info anchor="bottom" id="Version Control" order="7" />
+<<<<<<< HEAD
       <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49894625" visible="true" weight="0.31236443" />
+=======
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49894625" visible="true" weight="0.31236443" />
+>>>>>>> dev
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.25373134" side_tool="true" weight="0.32676518" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.329718" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -610,7 +631,11 @@
     <entry file="file://$PROJECT_DIR$/CA_Demo/myviews/clientviews/client_user_views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
+<<<<<<< HEAD
           <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
+=======
+          <caret line="55" selection-start-line="55" selection-end-line="55" />
+>>>>>>> dev
           <folding>
             <element signature="e#50#86#0" expanded="true" />
           </folding>
@@ -743,8 +768,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CA_Demo/templates/employees/manage_employees.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="-4796">
           <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+=======
+        <state relative-caret-position="344">
+          <caret line="274" column="18" selection-start-line="274" selection-start-column="18" selection-end-line="274" selection-end-column="18" />
+>>>>>>> dev
         </state>
       </provider>
     </entry>
