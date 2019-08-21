@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加维修信息</title>
+    {% load staticfiles %}
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/smalot-bootstrap-datetimepicker/2.4.4/css/bootstrap-datetimepicker.min.css"
+          rel="stylesheet">
+
+    <script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/smalot-bootstrap-datetimepicker/2.4.4/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="https://cdn.bootcss.com/smalot-bootstrap-datetimepicker/2.4.4/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+
+    <script src="{% static 'js/common.js'%}"></script>
+    <script src="{% static 'js/my_datetimepicker.js' %}"></script>
+
+    <style type="text/css" rel="stylesheet">
+        @import url("/static/css/add_update_common.css")
+    </style>
+</head>
+<body>
+    <div id="container_div">
+        <form action="addRepairInfo" method="post">
+        <div><label class="col-md-2">客户姓名：</label><select name="customer" id="customer" class="col-md-2">
+                        {% for customer in customers %}
+                            <option value="{{customer.id}}">{{customer.cus_name}}</option>
+                        {% endfor %}
+        </select></div><br><br>
+
+        <div><label class="col-md-2">维修人员：</label><select name="employee" id="employees" class="col-md-2">
+                        {% for employee in employees %}
+                            <option value="{{employee.id}}">{{employee.emp_name}}</option>
+                        {% endfor %}
+                    </select></div><br><br>
+
+        <div><label class="col-md-2">车牌号：</label><input type="text" id="plate_number" name="plate_number" class="col-md-2"> <br><br>
+
+        <div><label class="col-md-2">故障描述：</label><input type="text" name="repair_desc" class="col-md-2"><br><br>
+
+        <div><input type="submit" value="提交">&nbsp;&nbsp;<input type="reset" value="重置"></div>
+</form>
+        {% if status is not null and status == -1 %}
+            <p style="color:red">{{warning}}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

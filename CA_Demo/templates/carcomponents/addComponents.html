@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加部件信息</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <style type="text/css" rel="stylesheet">
+        @import url("/static/css/add_update_common.css");
+    </style>
+</head>
+<body>
+    <div id = "container_div">
+        <form action="addComponents" method="post">
+            <div class=="row"><label class="col-md-2">部件编号</label><input type="text" name="component_id" value="{{component_id}}"></div> <br><br>
+            <div class=="row"><label class="col-md-2">部件名称</label><input type="text" name="component_name" value="{{component_name}}"></div> <br><br>
+            <div class=="row"><label class="col-md-2">生产厂商</label><input type="text" name="manufacture" value="{{manufacture}}"></div> <br><br>
+            <div class=="row"><label class="col-md-2">单价</label><input type="text" name="price" value="{{price}}"></div> <br><br>
+            <div class=="row"><label class="col-md-2">性能参数</label><input type="text" name="func_param" value="{{func_param}}"></div> <br><br>
+            <div class=="row"><label class="col-md-2">是否已停产</label><input type="text" name="is_removed" value="{{is_removed}}"></div> <br><br>
+            <div class=="row"><label class="col-md-2">备注</label><input type="text" name="remark" value="{{remark}}"></div> <br><br>
+            <div><input type="submit" value="提交">&nbsp;&nbsp;<input type="reset" value="重置"></div>
+        </form>
+        {% if status is not null and status == -1 %}
+            <p style="color:red">{{warning}}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
