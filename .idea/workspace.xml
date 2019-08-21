@@ -2,32 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1e62fd2-b86a-461f-8179-9612333fb36a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/python_demo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/python_demo.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CA_Demo/myviews/cars_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/CA_Demo/myviews/cars_view.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CA_Demo/myviews/customers_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/CA_Demo/myviews/customers_view.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CA_Demo/myviews/employees_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/CA_Demo/myviews/employees_view.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CA_Demo/templates/cars/addCar.html" beforeDir="false" afterPath="$PROJECT_DIR$/CA_Demo/templates/cars/addCar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CA_Demo/templates/cars/manage_cars.html" beforeDir="false" afterPath="$PROJECT_DIR$/CA_Demo/templates/cars/manage_cars.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CA_Demo/templates/cars/updateCar.html" beforeDir="false" afterPath="$PROJECT_DIR$/CA_Demo/templates/cars/updateCar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CA_Demo/templates/customers/manage_customers.html" beforeDir="false" afterPath="$PROJECT_DIR$/CA_Demo/templates/customers/manage_customers.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CA_Demo/templates/employees/addEmployee.html" beforeDir="false" afterPath="$PROJECT_DIR$/CA_Demo/templates/employees/addEmployee.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CA_Demo/templates/employees/manage_employees.html" beforeDir="false" afterPath="$PROJECT_DIR$/CA_Demo/templates/employees/manage_employees.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CA_Demo/templates/employees/updateEmployee.html" beforeDir="false" afterPath="$PROJECT_DIR$/CA_Demo/templates/employees/updateEmployee.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CA_Demo/templates/errors/addError.html" beforeDir="false" afterPath="$PROJECT_DIR$/CA_Demo/templates/errors/addError.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CA_Demo/templates/errors/manage_errors.html" beforeDir="false" afterPath="$PROJECT_DIR$/CA_Demo/templates/errors/manage_errors.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CA_Demo/templates/errors/updateError.html" beforeDir="false" afterPath="$PROJECT_DIR$/CA_Demo/templates/errors/updateError.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CA_Demo/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/CA_Demo/templates/main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CA_Demo/templates/manage.html" beforeDir="false" afterPath="$PROJECT_DIR$/CA_Demo/templates/manage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CA_Demo/templates/top.html" beforeDir="false" afterPath="$PROJECT_DIR$/CA_Demo/templates/top.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CA_Demo/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/CA_Demo/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python_demo/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_demo/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/bootstrap-datetimepicker.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CA_Demo/myviews/tools.py" beforeDir="false" afterPath="$PROJECT_DIR$/CA_Demo/myviews/tools.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/common.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/bootstrap-datetimepicker.fr.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/bootstrap-datetimepicker.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/common.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -45,15 +21,6 @@
               <folding>
                 <element signature="e#45#90#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CA_Demo/myviews/errors_view.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1340">
-              <caret line="69" column="43" selection-start-line="69" selection-start-column="43" selection-end-line="69" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -83,7 +50,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CA_Demo/myviews/carcomponent_view.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-550">
@@ -110,8 +77,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CA_Demo/myviews/tools.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="27" column="66" selection-start-line="27" selection-start-column="66" selection-end-line="27" selection-end-column="66" />
+            <state relative-caret-position="120">
+              <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/static/css/common.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="268">
+              <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -183,7 +159,6 @@
         <option value="$PROJECT_DIR$/CA_Demo/templates/content.html" />
         <option value="$PROJECT_DIR$/CA_Demo/myviews/clientviews/client_customers_view.py" />
         <option value="$PROJECT_DIR$/CA_Demo/models.py" />
-        <option value="$PROJECT_DIR$/CA_Demo/myviews/tools.py" />
         <option value="$PROJECT_DIR$/CA_Demo/views.py" />
         <option value="$PROJECT_DIR$/CA_Demo/myviews/errors_view.py" />
         <option value="$PROJECT_DIR$/CA_Demo/templates/index.html" />
@@ -200,7 +175,6 @@
         <option value="$PROJECT_DIR$/CA_Demo/templates/errors/addError.html" />
         <option value="$PROJECT_DIR$/CA_Demo/templates/cars/updateCar.html" />
         <option value="$PROJECT_DIR$/CA_Demo/templates/cars/addCar.html" />
-        <option value="$PROJECT_DIR$/static/css/common.css" />
         <option value="$PROJECT_DIR$/python_demo/settings.py" />
         <option value="$PROJECT_DIR$/CA_Demo/myviews/clientviews/client_user_views.py" />
         <option value="$PROJECT_DIR$/CA_Demo/templates/employees/manage_employees.html" />
@@ -217,10 +191,12 @@
         <option value="$PROJECT_DIR$/CA_Demo/templates/carcomponents/addComponents.html" />
         <option value="$PROJECT_DIR$/CA_Demo/myviews/repairInfo_view.py" />
         <option value="$PROJECT_DIR$/CA_Demo/templates/repairInfos/addRepairInfo.html" />
+        <option value="$PROJECT_DIR$/CA_Demo/myviews/tools.py" />
+        <option value="$PROJECT_DIR$/static/css/common.css" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-7" />
     <option name="y" value="2" />
     <option name="width" value="1378" />
@@ -418,7 +394,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16596417" />
@@ -600,13 +576,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/common.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/js/my_datetimepicker.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
@@ -703,13 +672,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CA_Demo/myviews/tools.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="27" column="66" selection-start-line="27" selection-start-column="66" selection-end-line="27" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CA_Demo/templates/carcomponents/manage_Components.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -769,6 +731,20 @@
           <folding>
             <element signature="e#23#58#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CA_Demo/myviews/tools.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/common.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
         </state>
       </provider>
     </entry>
