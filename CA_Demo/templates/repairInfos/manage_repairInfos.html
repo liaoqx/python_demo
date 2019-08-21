@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>维修信息管理</title>
+    {% load staticfiles %}
+    <script src="{% static 'js/common.js'%}"></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <style type="text/css" rel="stylesheet">
+       @import url("/static/css/common.css")
+    </style>
+    <script>
+        function delData(){
+                var ids_arr = checkSelection()
+                var ids = ids_arr.join(",")
+                if(ids != ""){
+                    if(window.confirm("确定要删除选中的信息吗?"))
+                        window.location.href = "deleteRepairInfoById?id="+ids
+                }else
+                    alert("请选择要删除的记录")
+        }
+        function search(){
+            keywords = document.getElementById("keywords").value
+            if(keywords != "")
+                window.location.href = "getRepairInfosByEmp?keywords=" + keywords
+            else
+                alert("请输入需要查询的内容")
+         }
+    </script>
+</head>
+<body>
+
+<div id="border_div">
+    <div id="header_div">
+         <input type="text" name="keywords" id="keywords" placeholder="请输入维修人员的姓名或编号">&nbsp;
+         <button onclick="search()">搜索</button>&nbsp;
+       <button><a href="toAddRepairInfo" style="text-decoration:none">添加</a></button>&nbsp;
+        <button onclick="delData()">删除</button>
+    </div>
+    <div id="tb_div">
+        <table border="1" cellspacing="0">
+            <tr>
+                <th><input type="checkbox" onclick="selectAll()" id="ctrl_box"></th>
+                <th>ID</th>
+                <th>客户姓名</th>
+                <th>客户联系电话</th>
+                <th>客户邮箱</th>
+                <th>车牌号码</th>
+                <th>维修员编号</th>
+                <th>维修员姓名</th>
+                <th>故障描述</th>
+                <th>维修时间</th>
+                 <th>操作</th>
+            </tr >
+            {% if infos is not null %}
+                {% for info in infos %}
+                    <tr style="text-align:center"style="text-align:center">
+                        <td><input type="checkbox" value="{{info.id}}" name="selected"></td>
+                        <td>{{info.id}}</td>
+                        <td>{{info.cus_name}}</td>
+                        <td>{{info.telephone}}</td>
+                        <td>{{info.email}}</td>
+                        <td>{{info.plate_number}}</td>
+                        <td>{{info.emp_id}}</td>
+                        <td>{{info.emp_name}}</td>
+                        <td>{{info.repair_desc}}</td>
+                        <td>{{info.repair_time}}</td>
+                        <td><a href="toUpdateRepairInfoById?id={{info.id}}">修改</a></td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </table>
+    </div>
+    <div id="page_div">
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <li>
+                <a href="{{url}}?page={{previous_page}}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            {% for num in page_num %}
+                {% if num == cur_page %}
+                    <li class="active"><a href="{{url}}?page={{num}}">{{num}}</a></li>
+                {% else %}
+                    <li><a href="{{url}}?page={{num}}">{{num}}</a></li>
+                {% endif %}
+            {% endfor %}
+            <li>
+                <a href="{{url}}?page={{next_page}}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+    </div>
+</body>
+</html>

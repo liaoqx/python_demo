@@ -1,7 +1,7 @@
 # _*_ coding:utf-8 _*_
 from django.urls import path
 from CA_Demo.myviews import errors_view,customers_view,cars_view
-from CA_Demo.myviews import employees_view
+from CA_Demo.myviews import employees_view,carcomponent_view,repairInfo_view
 from CA_Demo.myviews.clientviews import client_user_views,client_customers_view
 import CA_Demo.views
 urlpatterns=[
@@ -20,5 +20,9 @@ urlpatterns=[
 
     path('client/customer/<str:client_cus_func>',client_customers_view.clientCustomerFunc),
 
-    path('employees/<str:emp_func>',employees_view.employeesFunc)
+    path('employees/<str:emp_func>',employees_view.employeesFunc),
+
+    path('carcomponents/<str:com_func>', carcomponent_view.componentFunc),
+
+    path('repairInfos/<str:rep_func>', repairInfo_view.repairInfoFunc)
 ]

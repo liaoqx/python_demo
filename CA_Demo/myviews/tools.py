@@ -4,7 +4,7 @@
 from django.core.paginator import Paginator
 def paging(data_list,cur_page):
     '''分页处理:总数据源,当前页页码'''
-    num = 3  #每页显示的记录数量
+    num = 10  #每页显示的记录数量
     if cur_page:
         cur_page = int(cur_page)
     else:
