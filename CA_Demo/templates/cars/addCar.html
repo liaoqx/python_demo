@@ -4,53 +4,99 @@
     <meta charset="UTF-8">
     <title>添加车辆信息</title>
     {% load staticfiles %}
-    <script src="{% static 'js/common.js' %}"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/smalot-bootstrap-datetimepicker/2.4.4/css/bootstrap-datetimepicker.min.css"
+          rel="stylesheet">
+
+    <script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/smalot-bootstrap-datetimepicker/2.4.4/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="https://cdn.bootcss.com/smalot-bootstrap-datetimepicker/2.4.4/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+
+    <script src="{% static 'js/common.js'%}"></script>
+    <script src="{% static 'js/my_datetimepicker.js' %}"></script>
+
+    <style type="text/css" rel="stylesheet">
+        @import url("/static/css/add_update_common.css")
+    </style>
 </head>
-<body bgcolor="#87CEFA">
-<form action="addCar" method="post" onsubmit="return getColors()">
-        车型编号：<input type="text" name="car_id"><br><br>
+<body>
+<div id="container_div">
+    <form action="addCar" method="post" onsubmit="return getColors()">
+        <div><label class="col-md-2">车型编号</label>
+            <input type="text" name="car_id" class="col-md-2"></div>
+        <br><br>
 
-        车辆名称：<input type="text" name="car_name"><br><br>
+        <div><label class="col-md-2">车辆名称</label><input type="text" name="car_name" class="col-md-2"></div>
+        <br><br>
 
-        出厂时间：<input type="text" id="produce_time" name="produce_time">
+        <!--<div class="row">-->
+        <label class="col-md-2">出厂时间</label>
+        <div class="col-md-2">
+            <div id="date2ID" class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                </div>
+                <input id="dateID" class="form-control" value="请选择日期" readonly name="produce_time">
+                <!--		      		<div class="input-group-addon">
+                                          <i class="fa fa-calendar" aria-hidden="true"></i>
+                                      </div>-->
+            </div>
+        </div>
+        <!--    </div>-->
 
         <br><br>
 
-        总质量(KG)：<input type="text" name="car_weight"><br><br>
-
-        额定承重量(KG)：<input type="text" name="allowable_weight"><br><br>
-
-        电机功率(KW)：<input type="text" name="power"><br><br>
-
-        发动机型号：<select name="engine" id="engine">
-                        {% for engine in engines %}
-                            <option value="{{engine.component_id}}">{{engine.component_name}}</option>
-                        {% endfor %}
-                    </select>
+        <div><label class="col-md-2">总质量(KG)</label><input type="text" name="car_weight" class="col-md-2"></div>
         <br><br>
 
-        乘员数：<input type="text" name="number"><br><br>
-
-    色系：
-            <input type="checkbox" value="1" name="color_list">黑色 &nbsp;
-
-            <input type="checkbox" value="2" name="color_list">白色 &nbsp;
-
-            <input type="checkbox" value="3" name="color_list">灰色 &nbsp;
-
-            <input type="checkbox" value="4" name="color_list">蓝色 &nbsp;
-
-            <input type="checkbox" value="5" name="color_list">红色 &nbsp;
-
-            <input type="checkbox" value="6" name="color_list">紫色
+        <div><label class="col-md-2">额定承重量(KG)</label><input type="text" name="allowable_weight" class="col-md-2"></div>
         <br><br>
-    生产状态：
-                      <input type="radio" checked="checked" value="F" name="is_removed">在产
-                      <input type="radio" value="T" name="is_removed">停产
-    <br><br>
-        备注：<textarea name="remark" cols="70" rows="5"></textarea><br><br>
-    <input type="hidden" name="colors" id="colors">
-    <input type="submit" value="提交"> &nbsp;&nbsp; <input type="reset" value="重置">
-</form>
+
+        <div><label class="col-md-2">电机功率(KW)</label><input type="text" name="power" class="col-md-2"></div>
+        <br><br>
+
+        <div><label class="col-md-2">发动机型号</label><select name="engine" id="engine" class="col-md-2">
+            {% for engine in engines %}
+            <option value="{{engine.component_id}}">{{engine.component_name}}</option>
+            {% endfor %}
+        </select></div>
+        <br><br>
+
+        <div><label class="col-md-2">乘员数</label><input type="text" name="number" class="col-md-2"></div>
+        <br><br>
+
+        <div><label class="col-md-2">色系</label>
+            <div class="col-md-4">
+                <input type="checkbox" value="1" name="color_list">黑色 &nbsp;
+
+                <input type="checkbox" value="2" name="color_list">白色 &nbsp;
+
+                <input type="checkbox" value="3" name="color_list">灰色 &nbsp;
+
+                <input type="checkbox" value="4" name="color_list">蓝色 &nbsp;
+
+                <input type="checkbox" value="5" name="color_list">红色 &nbsp;
+
+                <input type="checkbox" value="6" name="color_list">紫色
+            </div>
+        </div>
+        <br><br>
+        <div><label class="col-md-2">生产状态</label>
+            <div class="col-md-3">
+                <input type="radio" checked="checked" value="F" name="is_removed">在产
+                <input type="radio" value="T" name="is_removed">停产
+            </div>
+        </div>
+        <br><br>
+        <div><label class="col-md-2"> 备注</label><textarea name="remark" cols="70" rows="5"></textarea></div>
+        <br><br>
+        <input type="hidden" name="colors" id="colors">
+        <div class="footer">
+            <input type="submit" value="提交"> &nbsp;&nbsp; <input type="reset" value="重置">
+        </div>
+    </form>
+</div>
 </body>
 </html>

@@ -55,3 +55,41 @@ function checkPwd(){ //设置管理员用户时,需要检查管理员密码格�
     }else
         return true
 }
+
+function checkEmailOrTel(){ //添加员信息时,验证邮箱格式/电话号码
+    var email = $("#email").val()
+    var reg_email = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/
+
+    var tel = $("#tel").val()
+    var reg_tel = /(^1\d{10}$|^0\d{2,3}-?\d{7,8}$)/
+
+    var err_info = $("#err_info")
+    var res_email,res_tel
+
+    if((email == null || email == "") && (tel == null || tel == "")){
+        err_info.text("邮箱和电话号码必须至少填写一个")
+        return false
+    }
+
+    if(email != null && email != ""){
+        res_email = reg_email.test(email)
+        if(res_email == false){
+            err_info.text("邮箱格式错误")
+            return false
+        }else if(res_email == true && tel != null && tel != ""){
+            res_tel = reg_tel.test(tel)
+            if(res_tel == false){
+                err_info.text("电话号码格式错误")
+                return false
+            }else
+                return true
+        }
+    }else if(tel != null && tel != ""){
+        res_tel = reg_tel.test(tel)
+            if(res_tel == false){
+                err_info.text("电话号码格式错误")
+                return false
+            }else
+                return true
+    }
+}

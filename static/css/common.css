@@ -1,18 +1,26 @@
-
-        div{
-            margin-left:2%;
-            border:1px solid;
-            border-color:red;
-            padding-left:2%
-        }
-        #header{
-            margin-top:2%;
-        }
-        table{
-            width:100%;
-            margin-top:1%;
-        }
-        .table th{
-            text-align:center;
-            vertical-align:middle
-        }
+   body{
+    background-color:#87CEFA
+   }
+   #header_div,#tb_div,#page_div{
+       margin-left:2%;
+       margin-right:2%;
+       padding-left:2%;
+       padding-right:2%
+   }
+   #header_div{
+       margin-top:2%;
+   }
+   table{
+       width:100%;
+       margin-top:10px;
+   }
+   th{
+       vertical-align:middle;
+       text-align:center
+   }
+   #border_div{
+       padding:1%;
+       margin:2%;
+       position:relative;
+       height:100%;
+   }

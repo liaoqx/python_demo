@@ -30,12 +30,20 @@
             float:left;
             margin:20px
         }
+        #title{
+            position:relative;
+            margin:auto;
+            margin-left:25%;
+        }
     </style>
 </head>
 <body>
 <div>
     <strong>Welcome,{{request.session.username}}</strong><br>
     <small>工号：{{request.session.userid}}</small>
+</div>
+<div id="title">
+    <h1>欢迎使用信息管理系统</h1>
 </div>
 <button onclick="to_confirm()" class="btn btn-info">退出</button>
 </body>
